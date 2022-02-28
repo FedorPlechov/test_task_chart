@@ -1,6 +1,7 @@
 const WIDTH = 800;
 const HEIGHT = 400;
 const PADDING = 5;
+isAnimation = false;
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -81,6 +82,8 @@ function getValue(i, arr, circle = 0) {
 
 
 function animation() {
+    if (this.isAnimation) return
+    this.isAnimation = true;
     const newPoints = getData();
     const differenceXY = getArrayOfDifferenceXY(newPoints);
     let count = 1;
@@ -115,6 +118,7 @@ function animation() {
         if (count === 30) {
             clearInterval(timer);
             prevPoints = newPoints;
+            this.isAnimation = false;
         }
 
         count++;
